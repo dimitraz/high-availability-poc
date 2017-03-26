@@ -1,0 +1,19 @@
+haproxy:
+  build: ./haproxy
+  links:
+   - server1
+   - server2
+   - server3
+  ports:
+   - "80:80"
+
+server1:
+  build: ./nginx
+server2:
+  build: ./nginx
+  volumes: 
+    - ./nginx/server2/:/usr/share/nginx/html/
+server3:
+  build: ./nginx
+  volumes: 
+    - ./nginx/server3/:/usr/share/nginx/html/
