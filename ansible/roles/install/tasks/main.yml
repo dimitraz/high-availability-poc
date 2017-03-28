@@ -1,0 +1,14 @@
+---
+
+-
+  name: "Debian update & upgrade"
+  shell: "apt-get -y install && apt-get -y update"
+  become: true
+
+-
+  name: "Install docker"
+  shell: "ls -la"
+  register: output
+  
+- 
+  debug: var=output
