@@ -1,13 +1,14 @@
 ---
 
 -
-  name: "Debian update & upgrade"
+  name: "Ubuntu update & upgrade"
   shell: "apt-get -y install && apt-get -y update"
   become: true
 
 -
   name: "Install docker"
-  shell: "ls -la"
+  shell: "sudo apt-get install docker.io"
+  become: true
   register: output
   
 - 
