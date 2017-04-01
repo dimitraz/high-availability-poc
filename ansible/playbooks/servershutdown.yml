@@ -1,0 +1,7 @@
+---
+
+- name: "Shutdown servers"
+  hosts: all
+  remote_user: ubuntu
+  roles:
+    - {role: shutdown, tags: shutdown}

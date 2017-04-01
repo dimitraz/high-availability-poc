@@ -1,0 +1,9 @@
+---
+
+# Playbook to install dependencies
+
+- name: "Install dependencies"
+  hosts: all
+  remote_user: ubuntu
+  roles:
+    - {role: install, tags: install}

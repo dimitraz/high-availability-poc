@@ -1,0 +1,6 @@
+---
+
+-
+  name: "Reboot all servers"
+  shell: "reboot"
+  become: true

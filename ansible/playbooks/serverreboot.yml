@@ -1,0 +1,7 @@
+---
+
+- name: "Reboot servers"
+  hosts: all
+  remote_user: ubuntu
+  roles:
+    - {role: reboot, tags: reboot}

@@ -1,15 +1,23 @@
 ---
 
 -
-  name: "Ubuntu update & upgrade"
-  shell: "apt-get -y install && apt-get -y update"
+  name: "Update and upgrade Ubuntu"
+  shell: "apt-get -y update && apt-get -y upgrade"
   become: true
+  register: output
+  when: output is not defined and  output.rc == 1
 
 -
   name: "Install docker"
-  shell: "sudo apt-get install docker.io"
+  shell: "apt-get install -y docker.io"
   become: true
-  register: output
-  
+  register: install
+  when: install is not defined and install.rc == 1
+
+-
+  name: "Start docker daemon"
+  shell: "service docker start"
+  become: true
+    
 - 
   debug: var=output

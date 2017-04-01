@@ -1,0 +1,6 @@
+---
+
+-
+  name: "Shutdown all servers"
+  shell: "shutdown -hP now"
+  become: true
