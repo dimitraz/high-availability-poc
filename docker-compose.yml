@@ -1,5 +1,5 @@
 haproxy:
-  build: ./haproxy
+  image: myha
   links:
    - server1
    - server2
@@ -8,12 +8,12 @@ haproxy:
    - "80:80"
 
 server1:
-  build: ./nginx
+  image: myn
 server2:
-  build: ./nginx
+  image: myn
   volumes: 
     - ./nginx/server2/:/usr/share/nginx/html/
 server3:
-  build: ./nginx
+  image: myn
   volumes: 
     - ./nginx/server3/:/usr/share/nginx/html/
