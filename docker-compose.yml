@@ -1,11 +1,23 @@
-haproxy:
+haproxy-0:
   image: myha
   links:
    - server1
    - server2
    - server3
   ports:
-   - "80:80"
+   - "8888:80"
+  volumes: 
+    - ./haproxy/keepalived1/:/etc/keepalived
+haproxy-1:
+  image: myha
+  links:
+   - server1
+   - server2
+   - server3
+  ports:
+   - "9999:80"
+  volumes: 
+    - ./haproxy/keepalived2/:/etc/keepalived
 
 server1:
   image: myn

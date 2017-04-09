@@ -30,7 +30,7 @@ RUN tar -xvf /usr/local/haproxy/haproxy.tar.gz -C /usr/local/haproxy --strip-com
 WORKDIR /usr/local/haproxy
 COPY haproxy.cfg /usr/local/haproxy/haproxy.cfg
 
-RUN echo "net.ipv4.ip_nonlocal_bind=1" > /etc/sysctl.conf \
-    && sysctl -p
+#RUN echo "net.ipv4.ip_nonlocal_bind=1" > /etc/sysctl.conf \
+ #   && sysctl -p
 
 CMD ["./haproxy", "-f", "/usr/local/haproxy/haproxy.cfg"]

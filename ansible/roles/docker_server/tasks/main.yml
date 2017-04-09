@@ -1,0 +1,18 @@
+---
+
+-
+  name: "Build nginx image"
+  docker_image:
+     path: ./nginx
+     name: nginx
+     state: present
+
+-
+  name: "Run nginx container"
+    docker:
+      name: nginx_instance
+      image: "haproxy"
+      state: started
+      restart: yes
+      volumes: 
+        - ./nginx/server1/:/usr/share/nginx/html/

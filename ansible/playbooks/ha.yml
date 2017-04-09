@@ -1,9 +1,0 @@
----
-
-# Playbook to install dependencies
-
-- name: "Install docker"
-  hosts: all
-  remote_user: ubuntu
-  roles:
-    - {role: install, tags: install}
