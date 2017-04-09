@@ -15,4 +15,4 @@
       state: started
       restart: yes
       volumes: 
-        - ./nginx/server1/:/usr/share/nginx/html/
+        - {{ mount_path }}:/usr/share/nginx/html/

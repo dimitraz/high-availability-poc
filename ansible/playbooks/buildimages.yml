@@ -9,7 +9,22 @@
     - {role: docker}
 
 - name: "Build and run nginx docker image"
-  hosts: servers
+  hosts: 10.42.0.152
   remote_user: ubuntu
   roles:
-    - {role: docker}
+    - {role: docker, mount_path: "./nginx/server1/"}
+
+- name: "Build and run nginx docker image"
+  hosts: 10.42.0.175
+  remote_user: ubuntu
+  roles:
+    - {role: docker, mount_path: "./nginx/server2/"}
+
+- name: "Build and run nginx docker image"
+  hosts: 10.42.0.135
+  remote_user: ubuntu
+  roles:
+    - {role: docker, mount_path: "./nginx/server3/"}
+
+
+
