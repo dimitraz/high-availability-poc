@@ -1,0 +1,12 @@
+---
+
+-
+  name: "Install Keepalived"
+  shell: "apt-get install -y keepalived"
+  become: true
+
+-
+  name: "Copy configuration files"
+  synchronize:
+    src: ../keepalived
+    dest: /home/ubuntu/

@@ -1,18 +1,21 @@
 ---
 
 -
-  name: "Build haproxy image"
-  docker_image: 
-     path: ./haproxy
-     name: haproxy
-     state: present
+  name: "Make haproxy dir"
+  shell: "mkdir -p /home/ubuntu/haproxy"
 
 -
-  name: "Run haproxy container"
-    docker:
-      name: haproxy_instance
-      image: "haproxy"
-      state: started
-      restart: yes
-      publish_all_ports: yes
-    
+  name: "Copy docker files"
+  synchronize:
+    src: ../haproxy
+    dest: /home/ubuntu/
+ 
+-
+  name: "Build haproxy image"
+  shell: "cd haproxy && docker build -t haproxy ."
+  become: true
+
+-
+  name: "Run container"
+  hell: "docker run -d --name haproxy_instance -p 80:80 --restart=always haproxy"
+  become: true

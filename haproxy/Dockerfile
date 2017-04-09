@@ -1,5 +1,5 @@
-# FROM jefby/centos-arm64
-FROM centos:7
+FROM project31/aarch64-centos:7
+# FROM centos:7
 
 # Upgrade system, install wget and tar
 RUN yum -y update && yum clean all \
@@ -7,7 +7,6 @@ RUN yum -y update && yum clean all \
     && yum -y install wget \
     && yum -y install tar \
     && yum -y install make \
-    && yum -y install keepalived \
     && yum -y install gcc \
     && yum -y install pcre-devel 
 
@@ -29,8 +28,5 @@ RUN tar -xvf /usr/local/haproxy/haproxy.tar.gz -C /usr/local/haproxy --strip-com
 # Copy configuration file
 WORKDIR /usr/local/haproxy
 COPY haproxy.cfg /usr/local/haproxy/haproxy.cfg
-
-#RUN echo "net.ipv4.ip_nonlocal_bind=1" > /etc/sysctl.conf \
- #   && sysctl -p
 
 CMD ["./haproxy", "-f", "/usr/local/haproxy/haproxy.cfg"]

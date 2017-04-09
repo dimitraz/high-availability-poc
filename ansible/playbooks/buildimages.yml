@@ -6,25 +6,25 @@
   hosts: balancers
   remote_user: ubuntu
   roles:
-    - {role: docker}
+    - {role: docker_balancer}
 
 - name: "Build and run nginx docker image"
   hosts: 10.42.0.152
   remote_user: ubuntu
   roles:
-    - {role: docker, mount_path: "./nginx/server1/"}
+    - {role: docker_server, mount_path: "/home/ubuntu/nginx/server1/"}
 
 - name: "Build and run nginx docker image"
   hosts: 10.42.0.175
   remote_user: ubuntu
   roles:
-    - {role: docker, mount_path: "./nginx/server2/"}
+    - {role: docker_server, mount_path: "/home/ubuntu/nginx/server2/"}
 
 - name: "Build and run nginx docker image"
   hosts: 10.42.0.135
   remote_user: ubuntu
   roles:
-    - {role: docker, mount_path: "./nginx/server3/"}
+    - {role: docker_server, mount_path: "/home/ubuntu/nginx/server3/"}
 
 
 

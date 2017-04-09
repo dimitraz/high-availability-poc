@@ -1,0 +1,10 @@
+---
+
+# Playbook to install and configure keepalived
+
+- name: "Run Keepalived"
+  hosts: balancers
+  remote_user: ubuntu
+  roles:
+    - {role: keepalived}
+

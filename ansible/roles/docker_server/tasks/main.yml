@@ -1,18 +1,25 @@
 ---
 
 -
-  name: "Build nginx image"
-  docker_image:
-     path: ./nginx
-     name: nginx
-     state: present
+  name: "Make nginx dir"
+  shell: "mkdir -p /home/ubuntu/nginx"
 
 -
+  name: "Copy docker files"
+  synchronize:
+    src: ../nginx
+    dest: /home/ubuntu/
+  become: true 
+
+-
+  name: "Build nginx image"
+  shell: "cd nginx && docker build -t nginx ."
+  become: true
+
+-
+  debug: var=mount_path
+  
+-
   name: "Run nginx container"
-    docker:
-      name: nginx_instance
-      image: "haproxy"
-      state: started
-      restart: yes
-      volumes: 
-        - {{ mount_path }}:/usr/share/nginx/html/
+  hell: "docker run -d --name nginx_instance -p 80:80 --restart=always -v {{ mount_path }}:/usr/share/nginx/html/ nginx"
+  become: true
