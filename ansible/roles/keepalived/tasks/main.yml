@@ -6,6 +6,11 @@
   become: true
 
 -
+  name: "Install psmisc toolkit"
+  shell: "apt-get install psmisc"
+  become: true
+
+-
   name: "Copy configuration files"
   synchronize:
     src: ../keepalived
