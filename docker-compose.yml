@@ -1,31 +1,26 @@
-haproxy-0:
-  image: myha
+# To run on localhost change the servers in the haproxy.cfg
+# and uncomment the non-arm64 base images in the nginx
+# and haproxy dockerfiles
+haproxy:
+  build: ./haproxy
   links:
    - server1
    - server2
    - server3
   ports:
-   - "8888:80"
-  volumes: 
-    - ./haproxy/keepalived1/:/etc/keepalived
-haproxy-1:
-  image: myha
-  links:
-   - server1
-   - server2
-   - server3
-  ports:
-   - "9999:80"
-  volumes: 
-    - ./haproxy/keepalived2/:/etc/keepalived
+   - "80:80"
 
 server1:
-  image: myn
+  build: ./nginx
+  volumes: 
+    - ./nginx/server1/:/usr/share/nginx/html/
+
 server2:
-  image: myn
+  build: ./nginx
   volumes: 
     - ./nginx/server2/:/usr/share/nginx/html/
+
 server3:
-  image: myn
+  build: ./nginx
   volumes: 
     - ./nginx/server3/:/usr/share/nginx/html/
